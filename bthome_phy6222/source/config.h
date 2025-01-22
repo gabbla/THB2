@@ -43,9 +43,11 @@
 #define DEVICE_TH05D	24  // TH05_V1.3
 #define DEVICE_TH05F	25  // TH05Y_V1.2
 #define DEVICE_THB3		26
+#define DEVICE_KEY2		32
+#define DEVICE_TH04 	34
 
 #ifndef DEVICE
-#define DEVICE		DEVICE_THB3
+#define DEVICE		DEVICE_TH04
 #endif
 
 // supported services by the device (bits)
@@ -341,6 +343,76 @@
 #define DEF_MODEL_NUMBER_STR		"TH05F"
 #define DEF_HARDWARE_REVISION		"0019"
 #define DEF_MANUFACTURE_NAME_STR	"Tuya"
+
+#elif DEVICE == DEVICE_KEY2
+/* Model: iSearch ver2 ST17H66 (TSSOP16) */
+#define SDK_VER_CHIP  __DEF_CHIP_TSOP16__
+
+#if OTA_TYPE == OTA_TYPE_BOOT
+#define DEV_SERVICES (OTA_TYPE \
+		| SERVICE_BUTTON \
+		| SERVICE_FINDMY \
+		| SERVICE_BINDKEY \
+)
+#else
+#define DEV_SERVICES (OTA_TYPE \
+		| SERVICE_BUTTON \
+		| SERVICE_FINDMY \
+		| SERVICE_BINDKEY \
+)
+#endif
+
+#define ADC_PIN_USE_OUT		1	// hal_gpio_write(ADC_PIN, 1);
+#define ADC_PIN				GPIO_P11
+#define ADC_VBAT_CHL		VBAT_ADC_P11
+
+#define GPIO_KEY	GPIO_P15
+#define KEY_PRESSED	1
+#define GPIO_LED	GPIO_P03
+#define LED_ON		1
+#define LED_OFF		0
+
+#define GPIO_BUZZER	   GPIO_P09
+#define PWM_CHL_BUZZER PWM_CH0
+#define BUZZER_ON	1
+#define BUZZER_OFF	0
+
+//#define GPIO_INP	GPIO_P15
+
+#define DEF_MODEL_NUMBER_STR		"KEY"
+#define DEF_HARDWARE_REVISION		"0020"
+#define DEF_MANUFACTURE_NAME_STR	"DIY"
+
+#elif DEVICE == DEVICE_TH04
+
+#if OTA_TYPE == OTA_TYPE_BOOT
+#define DEV_SERVICES (OTA_TYPE \
+		| SERVICE_THS \
+		| SERVICE_SCREEN \
+		| SERVICE_KEY \
+)
+#else
+#define DEV_SERVICES (OTA_TYPE \
+		| SERVICE_THS \
+		| SERVICE_SCREEN \
+		| SERVICE_KEY \
+)
+#endif
+
+// TODO: I still need to figure this out
+#define ADC_PIN_USE_OUT		1
+#define ADC_PIN				GPIO_P11
+#define ADC_VBAT_CHL		VBAT_ADC_P11
+
+#define GPIO_KEY	GPIO_P24
+#define KEY_PRESSED	0
+
+#define I2C_SDA 	GPIO_P07 // SDA
+#define I2C_SCL 	GPIO_P03 // SCL
+
+#define DEF_MODEL_NUMBER_STR		"TH04"
+#define DEF_HARDWARE_REVISION		"CAFE" // TODO
+#define DEF_MANUFACTURE_NAME_STR	"FOO"  // TODO
 
 #else
 #error "DEVICE Not released!"
