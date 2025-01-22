@@ -295,22 +295,6 @@ const ioinit_cfg_t ioInit[] = {
 		{ GPIO_P32, GPIO_PULL_DOWN },
 		{ GPIO_P33, GPIO_FLOATING }, // CHT8305 SDA
 		{ GPIO_P34, GPIO_FLOATING } // CHT8305 SCL
-#elif (DEVICE == DEVICE_KEY2)
-		{ GPIO_P02, GPIO_FLOATING }, // connect to +Vbat ?
-#ifdef GPIO_LED
-		{ GPIO_P03, GPIO_FLOATING }, // LED - GPIO_LED
-#else
-		{ GPIO_P03, GPIO_PULL_DOWN },
-#endif
-		{ GPIO_P07, GPIO_PULL_DOWN }, // mark "SWS"
-		{ GPIO_P09, GPIO_PULL_DOWN }, // TX Buzzer
-		{ GPIO_P10, GPIO_PULL_DOWN}, // GPIO_PULL_UP }, // RX
-		{ GPIO_P11, GPIO_PULL_UP }, // ADC Vbat
-		{ GPIO_P14, GPIO_PULL_DOWN }, // PN8 ?
- 		{ GPIO_P15, GPIO_PULL_DOWN }, // KEY
-		{ GPIO_P18, GPIO_PULL_DOWN }, // PN10 ?
-		{ GPIO_P20, GPIO_FLOATING }, // connect to GND
-		{ GPIO_P34, GPIO_FLOATING }  // connect to +Vbat
 #elif (DEVICE == DEVICE_TH04)
 		{ GPIO_P00, GPIO_PULL_DOWN },
 		{ GPIO_P02, GPIO_PULL_DOWN },
